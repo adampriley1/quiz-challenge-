@@ -1,22 +1,60 @@
 var startBtn = document.querySelector("#start");
-var timer = document.querySelector("#time");
+var timerDisplay = document.querySelector("#time");
+var timer = 50;
 
 //start button event listner
 
 startBtn.addEventListener("click", function (event) {
   event.preventDefault();
 
-  //function to countdown time (from 75) when start button is pressed 
-  timer = 75;
+  //function to countdown time (from 50) when start button is pressed
+
   var timerCountdown = setInterval(function () {
+    timer = timer - 1;
     if (timer === 0) {
-      feedback.innerText = "Game Over!"; //correct place to display this message?
+      feedback.innerText = "Game Over!";
       clearInterval(timerCountdown);
+    } else {
+      timerDisplay.innerText = timer;
     }
   }, 1000);
 
-  //something.innerText = first question text
+  //change class of start-screen to "hide"
+  var startScreen = document.querySelector("#start-screen");
+  startScreen.classList.replace("start", "hide");
+
+  //change class of   <div id="questions" class="hide"></div> to start
+  var questionScreen = document.querySelector("#questions");
+  questionScreen.classList.replace("hide", "start");
+
+  //display 1st question
+  var quizQuestion1 = document.querySelector("#question-title");
+  quizQuestion1.innerText = question1.question;
+
+  //show question options
+
+  optionsList.textContent = renderQuestion1();
 });
+
+var optionsList = document.querySelector("#choices");
+
+//function to render list of questions
+function renderQuestion1() {
+  // Render a new li for each question
+  for (var i = 0; i < question1.options.length; i++) {
+    const questionOptions = question1.options[i];
+
+    const li = document.createElement("li");
+    li.textContent = questionOptions;
+    optionsList.appendChild(li);
+
+    //create a button element for each option
+    const button = document.createElement("button");
+    button.textContent = questionOption;
+
+    optionsList.appendChild(button);
+  }
+}
 
 // * A start button that when clicked a timer starts and the first question appears.
 //   * Questions contain buttons for each answer.
