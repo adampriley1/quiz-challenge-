@@ -1,29 +1,35 @@
 var startBtn = document.querySelector("#start");
 var timerDisplay = document.querySelector("#time");
 var timer = 50;
+var optionsList = document.querySelector(".choices");
 
-//start button event listner
+//start quiz button event listner
 
 startBtn.addEventListener("click", function (event) {
   event.preventDefault();
 
-  //function to countdown time (from 50) when start button is pressed
+  //function to countdown time (from 50) when "start quiz" button is pressed
 
   var timerCountdown = setInterval(function () {
     timer = timer - 1;
     if (timer === 0) {
-      feedback.innerText = "Game Over!";
+      playerfeedback.classList.replace("hide", "start");
+      playerfeedback.innerText = "Game Over!";
       clearInterval(timerCountdown);
     } else {
       timerDisplay.innerText = timer;
     }
   }, 1000);
 
-  //change class of start-screen to "hide"
+  //unhide feedback section
+  var playerfeedback = document.querySelector("#feedback");
+  playerfeedback.classList.replace("hide", "start");
+
+  //hide start screen
   var startScreen = document.querySelector("#start-screen");
   startScreen.classList.replace("start", "hide");
 
-  //change class of   <div id="questions" class="hide"></div> to start
+  // unhide questions screen
   var questionScreen = document.querySelector("#questions");
   questionScreen.classList.replace("hide", "start");
 
@@ -31,30 +37,62 @@ startBtn.addEventListener("click", function (event) {
   var quizQuestion1 = document.querySelector("#question-title");
   quizQuestion1.innerText = question1.question;
 
-  //show question options
+  //show answer options
 
-  optionsList.textContent = renderQuestion1();
+  
+  renderQuestion1();
 });
-
-var optionsList = document.querySelector("#choices");
 
 //function to render list of questions
 function renderQuestion1() {
-  // Render a new li for each question
-  for (var i = 0; i < question1.options.length; i++) {
-    const questionOptions = question1.options[i];
+    // Render a new li for each question
+    for (var i = 0; i < question1.options.length; i++) {
+      var questionOptions = question1.options[i];
 
-    const li = document.createElement("li");
-    li.textContent = questionOptions;
-    optionsList.appendChild(li);
+      var li = document.createElement("li");
+      li.textContent = questionOptions;
+      optionsList.appendChild(li);
 
-    //create a button element for each option
-    const button = document.createElement("button");
-    button.textContent = questionOption;
+      console.log (optionsList);
 
-    optionsList.appendChild(button);
-  }
+      //create a button element for each option
+    //   const button = document.createElement("button");
+    //   button.textContent = questionOption;
+    }
 }
+
+// function renderQuestion1() {
+
+
+//   // Render a new btn for each question
+//   for (var i = 0; i < question1.options.length; i++) {
+//     let button = document.createElement("button");
+//     button.textContent = question1.options[i];
+//     optionsList.appendChild(button);
+
+//     //Add event listener for answer button clicked by user
+
+//     button.addEventListener("click", function (event) {
+//       event.preventDefault();
+
+//       // Correct answer logic. if correct button pressed...
+//       if (event.target.textContent === question1.answer) {
+//         playerfeedback.innerText = "Correct!";
+//         optionsList.innerText = renderQuestion2();
+//       } else {
+//         playerfeedback.innerText = "Incorrect!";
+//         timer = timer - 10;
+
+//         // Check timer is still positive
+//         if (timer > 0) {
+//           optionsList.innerText = renderQuestion2();
+//         } else {
+//           // End the game and save score
+//         }
+//       }
+//     });
+//   }
+// }
 
 // * A start button that when clicked a timer starts and the first question appears.
 //   * Questions contain buttons for each answer.
@@ -99,3 +137,22 @@ function renderQuestion1() {
 // document.getElementById('start').addEventListener('click', function() {
 //     incorrectAudio.play();
 // });
+
+//function to render list of questions
+// function renderQuestion1() {
+//     // Render a new li for each question
+//     for (var i = 0; i < question1.options.length; i++) {
+//       var questionOptions = optionsList[i];
+
+//       var li = document.createElement("li");
+//       li.textContent = questionOptions;
+//       optionsList.appendChild(li);
+
+//       //create a button element for each option
+//       const button = document.createElement("button");
+//       button.textContent = questionOption;
+//     }
+// }
+//***
+
+//function to render Q1
