@@ -11,7 +11,6 @@ var endScreen = document.querySelector("#end-screen");
 var scoreResult = document.querySelector("#final-score");
 var submitButton = document.querySelector("#submit");
 
-var playerScore = 0;
 
 //function to clear question choices
 function clearChoices() {
@@ -243,6 +242,9 @@ function saveInitials() {
 
 //when submit button pressed, run displayhighscore function
 submitButton.addEventListener("click", saveInitials)
+
+// When submit button pressed, run saveInitials function
+submitButton.addEventListener("click", saveInitials);
 
 
 

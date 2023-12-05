@@ -1,7 +1,8 @@
-
 var highScoreList = document.querySelector("#highscores");
+var clearButton = document.querySelector("#clear");
+let scores = [];
 
-//Get the player's score from local storage
+// Get the player's score and initials from local storage
 
 function displayHighScore() {
 
@@ -10,28 +11,26 @@ function displayHighScore() {
         initial: localStorage.getItem ("playerInitials"),
         score: localStorage.getItem ("playerScore"),
     }
-    console.log (newScore.initial);
-    console.log (newScore.score)
+    //add score and initials to the array
+    scores.push(newScore);
 
-    highScoreList.textContent = "test123";
+    highScoreList.textContent = newScore.initial + " " + "-" + " " + newScore.score;
 }
 
-displayHighScore()
-//add score to new object//
+/// NOT WORKING**** need to add more scores to the array and display as ordered list.
 
-//push the users score to highScoreList
-// highScoreList.push(newScore); 
+for (let i = 0; i < scores.length; i++) {
+    const listItem = document.createElement("li");
+    highScoreList.textContent = scores[i].initial + " - " + scores[i].score;
+    highScoreList.appendChild(listItem);
+}
 
-//display highScoreList in html
-
-
-
-
+console.log (highScoreList);
 
 
+displayHighScore();
 
 
-// - Retrieve highscores from local storage
-// - sort the scores from higher score to lower score
-// - Display the highscores as a list in highscore.html
-// // - When the user click on "Clear Highscores", clear local storage
+
+
+
