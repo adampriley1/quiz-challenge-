@@ -19,7 +19,7 @@ function displayHighScore() {
 
  
 
-/// NOT WORKING**** need to add more scores to the array and display as ordered list.
+/// ****NOT WORKING AS EXPECTED**** need to add more scores to the array and display as ordered list.
 for (let i = 0; i < scores.length; i++) {
     const listItem = document.createElement("li");
     listItem.textContent = scores[i].initial + " - " + scores[i].score;
@@ -28,11 +28,14 @@ for (let i = 0; i < scores.length; i++) {
 
 displayHighScore();
 
-//
+//clear the highscore
+function clearHighScore() {
+    // Clear the highScoreList before displaying scores
+    highScoreList.innerHTML = ""};
 
-// function displayHighScore() {
-//     // Clear the highScoreList before displaying scores
-//     highScoreList.innerHTML = "";
+clearButton.addEventListener("click", clearHighScore)
+
+
 
 
     
