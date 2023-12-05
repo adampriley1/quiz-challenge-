@@ -13,7 +13,6 @@ startBtn.addEventListener("click", function (event) {
   var timerCountdown = setInterval(function () {
     timer = timer - 1;
     if (timer === 0) {
-      playerfeedback.classList.replace("hide", "start");
       playerfeedback.innerText = "Game Over!";
       clearInterval(timerCountdown);
     } else {
@@ -43,32 +42,174 @@ startBtn.addEventListener("click", function (event) {
   renderQuestion1();
 });
 
-//function to render list of questions
+//function to render question 1
 function renderQuestion1() {
     // Render a new li for each question
     for (var i = 0; i < question1.options.length; i++) {
       var questionOptions = question1.options[i];
 
-      var li = document.createElement("li");
-      li.textContent = questionOptions;
-      optionsList.appendChild(li);
+      //var li = document.createElement("li");
+      var button = document.createElement("button");
+      button.textContent = questionOptions;
+      optionsList.appendChild(button);
 
-      console.log (optionsList);
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        
+              // Correct answer logic. if correct button pressed...
+              if (event.target.textContent === question1.answer) {
+                feedback.innerText = "Correct!";
+                optionsList.innerText = renderQuestion2();
+              } else {
+                feedback.innerText = "Incorrect!";
+                timer = timer - 10;
+        
+                // Check timer is still positive
+                if (timer > 0) {
+                  optionsList.innerText = renderQuestion2();
+                } else {
+                  // End the game and save score
+                }
+              }
+            });
+          }
+        }
+  
 
-      //create a button element for each option
-    //   const button = document.createElement("button");
-    //   button.textContent = questionOption;
-    }
-}
+//function to render question 2
+function renderQuestion2() {
+    // Render a new li for each question
+    for (var i = 0; i < question2.options.length; i++) {
+      var questionOptions = question2.options[i];
 
-// function renderQuestion1() {
+      //var li = document.createElement("li");
+      var button = document.createElement("button");
+      button.textContent = questionOptions;
+      optionsList.appendChild(button);
+
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        
+              // Correct answer logic. if correct button pressed...
+              if (event.target.textContent === question2.answer) {
+                feedback.innerText = "Correct!";
+                optionsList.innerText = renderQuestion3();
+              } else {
+                feedback.innerText = "Incorrect!";
+                timer = timer - 10;
+        
+                // Check timer is still positive
+                if (timer > 0) {
+                  optionsList.innerText = renderQuestion3();
+                } else {
+                  // End the game and save score
+                }
+              }
+            });
+          }
+        }
+  
+        //function to render question 3
+function renderQuestion3() {
+    // Render a new li for each question
+    for (var i = 0; i < question3.options.length; i++) {
+      var questionOptions = question3.options[i];
+
+      //var li = document.createElement("li");
+      var button = document.createElement("button");
+      button.textContent = questionOptions;
+      optionsList.appendChild(button);
+
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        
+              // Correct answer logic. if correct button pressed...
+              if (event.target.textContent === question3.answer) {
+                feedback.innerText = "Correct!";
+                optionsList.innerText = renderQuestion4();
+              } else {
+                feedback.innerText = "Incorrect!";
+                timer = timer - 10;
+        
+                // Check timer is still positive
+                if (timer > 0) {
+                  optionsList.innerText = renderQuestion4();
+                } else {
+                  // End the game and save score
+                }
+              }
+            });
+          }
+        }
+
+        //function to render question 4
+function renderQuestion4() {
+    // Render a new li for each question
+    for (var i = 0; i < question4.options.length; i++) {
+      var questionOptions = question4.options[i];
+
+      //var li = document.createElement("li");
+      var button = document.createElement("button");
+      button.textContent = questionOptions;
+      optionsList.appendChild(button);
+
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        
+              // Correct answer logic. if correct button pressed...
+              if (event.target.textContent === question4.answer) {
+                feedback.innerText = "Correct!";
+                optionsList.innerText = renderQuestion5();
+              } else {
+                feedback.innerText = "Incorrect!";
+                timer = timer - 10;
+        
+                // Check timer is still positive
+                if (timer > 0) {
+                  optionsList.innerText = renderQuestion5();
+                } else {
+                  // End the game and save score
+                }
+              }
+            });
+          }
+        }
+
+        //function to render question 5
+function renderQuestion5() {
+    // Render a new li for each question
+    for (var i = 0; i < question5.options.length; i++) {
+      var questionOptions = question5.options[i];
+
+      //var li = document.createElement("li");
+      var button = document.createElement("button");
+      button.textContent = questionOptions;
+      optionsList.appendChild(button);
+
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        
+              // Correct answer logic. if correct button pressed...
+              if (event.target.textContent === question5.answer) {
+                feedback.innerText = "Correct!";
+                //show finish screen
+              } else {
+                feedback.innerText = "Incorrect!";
+                timer = timer - 10;
+        
+                // Check timer is still positive
+                if (timer > 0) {
+                //   optionsList.innerText = //Finish screen();
+                } else {
+                  // Finish Screen
+                }
+              }
+            });
+          }
+        }
 
 
-//   // Render a new btn for each question
-//   for (var i = 0; i < question1.options.length; i++) {
-//     let button = document.createElement("button");
-//     button.textContent = question1.options[i];
-//     optionsList.appendChild(button);
+
 
 //     //Add event listener for answer button clicked by user
 
