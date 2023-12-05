@@ -1,3 +1,5 @@
+//make this into an array of questions? so I can create function for choices / questions logic?
+
 var question1 = {
     question: "Which of these IS NOT a commonly used data type in JavaScript?",
     options: ["strings", "alerts", "numbers", "booleans"],

@@ -2,6 +2,14 @@ var startBtn = document.querySelector("#start");
 var timerDisplay = document.querySelector("#time");
 var timer = 50;
 var optionsList = document.querySelector(".choices");
+var quizQuestion = document.querySelector("#question-title");
+
+//function to clear choices
+
+function clearChoices () {
+    document.querySelector(".choices").innerHTML = ""; 
+    
+}
 
 //start quiz button event listner
 
@@ -33,21 +41,24 @@ startBtn.addEventListener("click", function (event) {
   questionScreen.classList.replace("hide", "start");
 
   //display 1st question
-  var quizQuestion1 = document.querySelector("#question-title");
-  quizQuestion1.innerText = question1.question;
+
+  quizQuestion.innerText = question1.question;
 
   //show answer options
 
-  
   renderQuestion1();
+
+
 });
+//functions to render questions - make this into 1 simple function???//
+
 
 //function to render question 1
 function renderQuestion1() {
     // Render a new li for each question
     for (var i = 0; i < question1.options.length; i++) {
       var questionOptions = question1.options[i];
-
+      
       //var li = document.createElement("li");
       var button = document.createElement("button");
       button.textContent = questionOptions;
@@ -59,154 +70,160 @@ function renderQuestion1() {
               // Correct answer logic. if correct button pressed...
               if (event.target.textContent === question1.answer) {
                 feedback.innerText = "Correct!";
-                optionsList.innerText = renderQuestion2();
+                clearChoices ();
+                quizQuestion.innerText = question2.question;
+                questionOptions = renderQuestion2();
               } else {
                 feedback.innerText = "Incorrect!";
+                clearChoices ();
                 timer = timer - 10;
+                quizQuestion.innerText = question2.question;
         
                 // Check timer is still positive
                 if (timer > 0) {
-                  optionsList.innerText = renderQuestion2();
+                   questionOptions = renderQuestion2();
                 } else {
-                  // End the game and save score
+                    feedback.innerText = "Incorrect!";
+                    //save score as 0 and show enter name screen
                 }
               }
             });
           }
         }
+
+// //function to render question 2
+// function renderQuestion2() {
+//     // Render a new li for each question
+//     for (var i = 0; i < question2.options.length; i++) {
+//       var questionOptions = question2.options[i];
+
+//       //var li = document.createElement("li");
+//       var button = document.createElement("button");
+//       button.textContent = questionOptions;
+//       optionsList.appendChild(button);
+
+//       button.addEventListener("click", function (event) {
+//         event.preventDefault();
+        
+//               // Correct answer logic. if correct button pressed...
+//               if (event.target.textContent === question2.answer) {
+//                 feedback.innerText = "Correct!";
+//                 optionsList = "";
+//                 //remove above line?
+//                 questionOptions = renderQuestion3();
+//               } else {
+//                 feedback.innerText = "Incorrect!";
+//                 timer = timer - 10;
+        
+//                 // Check timer is still positive
+//                 if (timer > 0) {
+//                   optionsList.innerText = renderQuestion3();
+//                 } else {
+//                   // End the game and save score
+//                 }
+//               }
+//             });
+//           }
+//         }
   
+//         //function to render question 3
+// function renderQuestion3() {
+//     // Render a new li for each question
+//     for (var i = 0; i < question3.options.length; i++) {
+//       var questionOptions = question3.options[i];
 
-//function to render question 2
-function renderQuestion2() {
-    // Render a new li for each question
-    for (var i = 0; i < question2.options.length; i++) {
-      var questionOptions = question2.options[i];
+//       //var li = document.createElement("li");
+//       var button = document.createElement("button");
+//       button.textContent = questionOptions;
+//       optionsList.appendChild(button);
 
-      //var li = document.createElement("li");
-      var button = document.createElement("button");
-      button.textContent = questionOptions;
-      optionsList.appendChild(button);
-
-      button.addEventListener("click", function (event) {
-        event.preventDefault();
+//       button.addEventListener("click", function (event) {
+//         event.preventDefault();
         
-              // Correct answer logic. if correct button pressed...
-              if (event.target.textContent === question2.answer) {
-                feedback.innerText = "Correct!";
-                optionsList.innerText = renderQuestion3();
-              } else {
-                feedback.innerText = "Incorrect!";
-                timer = timer - 10;
+//               // Correct answer logic. if correct button pressed...
+//               if (event.target.textContent === question3.answer) {
+//                 feedback.innerText = "Correct!";
+//                 optionsList.innerText = renderQuestion4();
+//               } else {
+//                 feedback.innerText = "Incorrect!";
+//                 timer = timer - 10;
         
-                // Check timer is still positive
-                if (timer > 0) {
-                  optionsList.innerText = renderQuestion3();
-                } else {
-                  // End the game and save score
-                }
-              }
-            });
-          }
-        }
-  
-        //function to render question 3
-function renderQuestion3() {
-    // Render a new li for each question
-    for (var i = 0; i < question3.options.length; i++) {
-      var questionOptions = question3.options[i];
+//                 // Check timer is still positive
+//                 if (timer > 0) {
+//                   optionsList.innerText = renderQuestion4();
+//                 } else {
+//                   // End the game and save score
+//                 }
+//               }
+//             });
+//           }
+//         }
 
-      //var li = document.createElement("li");
-      var button = document.createElement("button");
-      button.textContent = questionOptions;
-      optionsList.appendChild(button);
+//         //function to render question 4
+// function renderQuestion4() {
+//     // Render a new li for each question
+//     for (var i = 0; i < question4.options.length; i++) {
+//       var questionOptions = question4.options[i];
 
-      button.addEventListener("click", function (event) {
-        event.preventDefault();
+//       //var li = document.createElement("li");
+//       var button = document.createElement("button");
+//       button.textContent = questionOptions;
+//       optionsList.appendChild(button);
+
+//       button.addEventListener("click", function (event) {
+//         event.preventDefault();
         
-              // Correct answer logic. if correct button pressed...
-              if (event.target.textContent === question3.answer) {
-                feedback.innerText = "Correct!";
-                optionsList.innerText = renderQuestion4();
-              } else {
-                feedback.innerText = "Incorrect!";
-                timer = timer - 10;
+//               // Correct answer logic. if correct button pressed...
+//               if (event.target.textContent === question4.answer) {
+//                 feedback.innerText = "Correct!";
+//                 optionsList.innerText = renderQuestion5();
+//               } else {
+//                 feedback.innerText = "Incorrect!";
+//                 timer = timer - 10;
         
-                // Check timer is still positive
-                if (timer > 0) {
-                  optionsList.innerText = renderQuestion4();
-                } else {
-                  // End the game and save score
-                }
-              }
-            });
-          }
-        }
+//                 // Check timer is still positive
+//                 if (timer > 0) {
+//                   optionsList.innerText = renderQuestion5();
+//                 } else {
+//                   // End the game and save score
+//                 }
+//               }
+//             });
+//           }
+//         }
 
-        //function to render question 4
-function renderQuestion4() {
-    // Render a new li for each question
-    for (var i = 0; i < question4.options.length; i++) {
-      var questionOptions = question4.options[i];
+//         //function to render question 5
+// function renderQuestion5() {
+//     // Render a new li for each question
+//     for (var i = 0; i < question5.options.length; i++) {
+//       var questionOptions = question5.options[i];
 
-      //var li = document.createElement("li");
-      var button = document.createElement("button");
-      button.textContent = questionOptions;
-      optionsList.appendChild(button);
+//       //var li = document.createElement("li");
+//       var button = document.createElement("button");
+//       button.textContent = questionOptions;
+//       optionsList.appendChild(button);
 
-      button.addEventListener("click", function (event) {
-        event.preventDefault();
+//       button.addEventListener("click", function (event) {
+//         event.preventDefault();
         
-              // Correct answer logic. if correct button pressed...
-              if (event.target.textContent === question4.answer) {
-                feedback.innerText = "Correct!";
-                optionsList.innerText = renderQuestion5();
-              } else {
-                feedback.innerText = "Incorrect!";
-                timer = timer - 10;
+//               // Correct answer logic. if correct button pressed...
+//               if (event.target.textContent === question5.answer) {
+//                 feedback.innerText = "Correct!";
+//                 //show finish screen
+//               } else {
+//                 feedback.innerText = "Incorrect!";
+//                 timer = timer - 10;
         
-                // Check timer is still positive
-                if (timer > 0) {
-                  optionsList.innerText = renderQuestion5();
-                } else {
-                  // End the game and save score
-                }
-              }
-            });
-          }
-        }
-
-        //function to render question 5
-function renderQuestion5() {
-    // Render a new li for each question
-    for (var i = 0; i < question5.options.length; i++) {
-      var questionOptions = question5.options[i];
-
-      //var li = document.createElement("li");
-      var button = document.createElement("button");
-      button.textContent = questionOptions;
-      optionsList.appendChild(button);
-
-      button.addEventListener("click", function (event) {
-        event.preventDefault();
-        
-              // Correct answer logic. if correct button pressed...
-              if (event.target.textContent === question5.answer) {
-                feedback.innerText = "Correct!";
-                //show finish screen
-              } else {
-                feedback.innerText = "Incorrect!";
-                timer = timer - 10;
-        
-                // Check timer is still positive
-                if (timer > 0) {
-                //   optionsList.innerText = //Finish screen();
-                } else {
-                  // Finish Screen
-                }
-              }
-            });
-          }
-        }
+//                 // Check timer is still positive
+//                 if (timer > 0) {
+//                 //   optionsList.innerText = //Finish screen();
+//                 } else {
+//                   // Finish Screen
+//                 }
+//               }
+//             });
+// //           }
+//         }
 
 
 
@@ -279,21 +296,4 @@ function renderQuestion5() {
 //     incorrectAudio.play();
 // });
 
-//function to render list of questions
-// function renderQuestion1() {
-//     // Render a new li for each question
-//     for (var i = 0; i < question1.options.length; i++) {
-//       var questionOptions = optionsList[i];
 
-//       var li = document.createElement("li");
-//       li.textContent = questionOptions;
-//       optionsList.appendChild(li);
-
-//       //create a button element for each option
-//       const button = document.createElement("button");
-//       button.textContent = questionOption;
-//     }
-// }
-//***
-
-//function to render Q1
