@@ -1,12 +1,17 @@
 var startBtn = document.querySelector("#start");
-var timerCountdown = document.querySelector("#time");
+var timerDisplay = document.querySelector("#time");
 var timer = 50;
+var timerCountdown = "";
 var optionsList = document.querySelector(".choices");
 var quizQuestion = document.querySelector("#question-title");
 var questionScreen = document.querySelector("#questions");
 var startScreen = document.querySelector("#start-screen");
 var playerFeedback = document.querySelector("#feedback");
 var endScreen = document.querySelector("#end-screen");
+var scoreResult = document.querySelector("#final-score");
+var submitButton = document.querySelector("#submit");
+
+var playerScore = 0;
 
 //function to clear question choices
 function clearChoices() {
@@ -15,27 +20,25 @@ function clearChoices() {
 
 // function to check timer is still positive
 function checkTimer() {
-  if (timer < 0) {
+  if (timer < 1) {
     playerFeedback.innerText = "Game Over!";
     endGame();
   }
 }
-
-
 
 //start quiz button event listner
 startBtn.addEventListener("click", function (event) {
   event.preventDefault();
 
   //function to countdown time (from 50) when "start quiz" button is pressed
-  var timerCountdown = setInterval(function () {
-    timer = timer - 1;
-    if (timer < 0) {
-      playerFeedback.innerText = "Game Over!";
-      clearInterval(timerCountdown);
-    } else {
-      timerCountdown.innerText = timer;
+  timerCountdown = setInterval(function () {
+    timer -= 1;
+    if (timer <=0) {
+      endGame()
+      ;
     }
+      timerDisplay.innerText = timer;
+    
   }, 1000);
 
   //unhide feedback section
@@ -204,15 +207,13 @@ function renderQuestion5() {
         playerFeedback.innerText = "Correct!";
         clearChoices();
         quizQuestion.innerText = "";
-       endGame();
+        endGame();
       }
 
       if (timer > 10 && event.target.textContent !== question5.answer) {
         playerFeedback.innerText = "Incorrect!";
         timer = timer - 10;
-        clearChoices();
         quizQuestion.innerText = "";
-        
         checkTimer();
         endGame();
       }
@@ -221,26 +222,28 @@ function renderQuestion5() {
 }
 function endGame() {
 
-    // localStorage.setItem('playerScore', JSON.stringify(highscoresFromStorage));
-    // clearInterval(timerCountdown);
+  //stop timer and display score to user
+  clearInterval(timerCountdown);
+  scoreResult.innerText = timer;
+  timerDisplay.innerText = timer;
+  //save score in local storage
+  localStorage.setItem("playerScore",JSON.stringify (timer));
 
-  // hide questions div - not working?
-  questionScreen.classList.replace("start", "hide");
+  // hide questions div
+  questionScreen.classList.add("hide");
   //show end screen div
   endScreen.classList.remove("hide");
+
 }
 
-// * A start button that when clicked a timer starts and the first question appears.
-//   * Questions contain buttons for each answer.
-//   * When answer is clicked, the next question appears
-//   * If the answer clicked was incorrect then subtract time from the clock
-// * The quiz should end when all questions are answered or the timer reaches 0.
-//   * When the game ends, it should display their score and give the user the ability to save their initials and their score
+function saveInitials() {
+    var usersInitials = document.getElementById('initials').value
+    localStorage.setItem("playerInitials", usersInitials);
+}
+
+//when submit button pressed, run displayhighscore function
+submitButton.addEventListener("click", saveInitials)
 
 
 
-// highscores.html
-// - Retrieve highscores from local storage
-// - sort the scores from higher score to lower score
-// - Display the highscores as a list
-// // - When the user click on "Clear Highscores", clear local storage
+
