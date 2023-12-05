@@ -230,21 +230,24 @@ function endGame() {
 
   // hide questions div
   questionScreen.classList.add("hide");
+
   //show end screen div
   endScreen.classList.remove("hide");
 
 }
-
+//saves initils and opens the highscore window
 function saveInitials() {
     var usersInitials = document.getElementById('initials').value
     localStorage.setItem("playerInitials", usersInitials);
+    window.open(href="highscores.html");
 }
 
-//when submit button pressed, run displayhighscore function
-submitButton.addEventListener("click", saveInitials)
 
-// When submit button pressed, run saveInitials function
+
+//when submit button pressed, run displayhighscore function
 submitButton.addEventListener("click", saveInitials);
+
+
 
 
 

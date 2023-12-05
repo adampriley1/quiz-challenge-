@@ -17,19 +17,25 @@ function displayHighScore() {
     highScoreList.textContent = newScore.initial + " " + "-" + " " + newScore.score;
 }
 
-/// NOT WORKING**** need to add more scores to the array and display as ordered list.
+ 
 
+/// NOT WORKING**** need to add more scores to the array and display as ordered list.
 for (let i = 0; i < scores.length; i++) {
     const listItem = document.createElement("li");
-    highScoreList.textContent = scores[i].initial + " - " + scores[i].score;
+    listItem.textContent = scores[i].initial + " - " + scores[i].score;
     highScoreList.appendChild(listItem);
 }
 
-console.log (highScoreList);
-
-
 displayHighScore();
 
+//
+
+// function displayHighScore() {
+//     // Clear the highScoreList before displaying scores
+//     highScoreList.innerHTML = "";
+
+
+    
 
 
 
