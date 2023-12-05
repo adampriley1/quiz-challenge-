@@ -47,7 +47,7 @@ Click on "Start Quiz" button. Answer questions as quickly as possible, and see y
 
 Application Link:
 
-https://adampriley1.github.io/Password-generator/
+https://adampriley1.github.io/quiz-challenge-/
 
 
 
